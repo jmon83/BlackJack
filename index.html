@@ -1,3 +1,4 @@
+<!DOCTYPE HTML>
 <html>
 <head>
 <title>BlackJack</title>
@@ -14,6 +15,27 @@
 <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
+    <div id="dealRow">
+        <div id="dealInfo">
+            <span id="dealStand">STAND</span>
+            Dealer - <span id="dealerPoint">?</span>
+        </div>
+        <div id="cardDeal"></div>
+    </div>
+    <div id="playerRow">
+        <div id="playerInfo">
+            <span id="playerStand">STAND</span>
+            Your Hand - <span id="playerPoints">0</span>
+        </div>
+
+        <div id="cardPlayer"></div>
+    </div>
+
+    <div id="playCon">
+        <input type="button" id="playStart" value="Play"/>
+        <input type="button" id="playHit" value="Hit Me"/>
+        <input type="button" id="playStand" value="Stand"/>
+    </div>
     
 </body>
 </html>

@@ -2,3 +2,83 @@ body {
     background-color: green;
     color: white;
 }
+
+#dealRow, #playerRow {
+    min-Height: 150px;
+}
+
+#dealInfo, #playerInfo {
+    padding: 10px;
+    color: chartreuse;
+}
+
+#dealStand, #playerStand {
+    display: none;
+    padding: 5px;
+    background: red;
+    color: white;
+}
+
+#dealStand.standing, #playerStand.standing {
+    display: inline-block;  
+}
+
+#cardDeal, #cardPlayer {
+    display:grid;
+    grid-template-columns: repeat(4, auto);
+    grid-gap: 10px;
+    padding: 10px;
+}
+
+.gameCards {
+    box-sizing: border-box;
+    font-size: 12px;
+    text-align: center;
+    padding: 10px;
+    width: 100%;
+    background: black;
+    border: 1px solid #eaeaea;
+}
+
+#dealRow {
+    background: white;
+}
+#dealInfo {
+    background: black;
+}
+#dealOne .front {
+    display: none;
+}
+#dealOne.show .back {
+    display: none;
+}
+#dealOne.show .front {
+    display: block;
+}
+#playerRow {
+    background: red;
+}
+#playerInfo {
+    background: blue;
+}
+#playCon {
+    display: grid;
+    grid-template-columns: 100%;
+    grid-gap: 10px;
+    padding: 10px;
+    background: grey;
+}
+#playCon input {
+    box-sizing: border-box;
+    cursor: pointer;
+    border: 0;
+    padding: 10px 0;
+    background: orange;
+    color: aqua;
+    width: 100%;
+}
+
+#playHit, #playStand { display: none; }
+#playCon.playStart { grid-template-columns: 50% 50%; }
+#playCon.started #playStart { display: none; }
+#playCon.started #playHit, #playCon.started #playStand { display: block; }
