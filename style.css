@@ -1,6 +1,23 @@
 body {
     background-color: green;
-    color: white;
+    color: black;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+  }
+
+#game {
+
+}
+
+#theDealer {
+
+}
+
+#main {
+
 }
 
 #dealRow, #playerRow {
@@ -10,12 +27,14 @@ body {
 #dealInfo, #playerInfo {
     padding: 10px;
     color: chartreuse;
+    border-radius: 10px;
+    width: 90%;
 }
 
 #dealStand, #playerStand {
     display: none;
     padding: 5px;
-    background: red;
+    background: green;
     color: white;
 }
 
@@ -25,26 +44,26 @@ body {
 
 #cardDeal, #cardPlayer {
     display:grid;
-    grid-template-columns: repeat(4, auto);
+    grid-template-columns: repeat(1, auto);
     grid-gap: 10px;
     padding: 10px;
 }
 
 .gameCards {
-    box-sizing: border-box;
-    font-size: 12px;
+    box-sizing: content-box;
+    font-size: 24px;
     text-align: center;
     padding: 10px;
-    width: 100%;
-    background: black;
+    width: 87%;
+    background: rgb(255, 255, 255);
     border: 1px solid #eaeaea;
 }
 
 #dealRow {
-    background: white;
+    background: green;
 }
 #dealInfo {
-    background: black;
+    background: rgb(40, 105, 180);
 }
 #dealOne .front {
     display: none;
@@ -56,29 +75,30 @@ body {
     display: block;
 }
 #playerRow {
-    background: red;
+    background: green;
 }
 #playerInfo {
     background: blue;
 }
 #playCon {
-    display: grid;
-    grid-template-columns: 100%;
+    display: inline-flex;
+    grid-template-columns: 33%;
     grid-gap: 10px;
     padding: 10px;
-    background: grey;
+    background: green;
 }
 #playCon input {
     box-sizing: border-box;
     cursor: pointer;
     border: 0;
-    padding: 10px 0;
-    background: orange;
-    color: aqua;
+    padding: 20px 20;
+    background: red;
+    color: white;
     width: 100%;
+    border-radius: 5px;
 }
 
-#playHit, #playStand { display: none; }
+#playHit, #playerStand { display: none; }
 #playCon.playStart { grid-template-columns: 50% 50%; }
 #playCon.started #playStart { display: none; }
-#playCon.started #playHit, #playCon.started #playStand { display: block; }
+#playCon.started #playHit, #playCon.started #playerStand { display: block; }
