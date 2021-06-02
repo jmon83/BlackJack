@@ -1,3 +1,4 @@
+
 var game = {     dealStand: null,
     dealPoint: null,
     dealHand: null,
@@ -68,7 +69,7 @@ var game = {     dealStand: null,
         game.points(),
         null == game.check() && (game.turn = 0)
     },
-    dsymbols: ["&hearts;", "&diams;", "&clubs;", "&spades;"],
+    dsymbols: ['<span style="color: red">&hearts;</span>', '<span style="color: red">&diams;</span>', "&clubs;", "&spades;"],
     dnum: {
         1: "A",
         11: "J",
@@ -106,41 +107,75 @@ var game = {     dealStand: null,
         game.playerPoint.innerHTML = t)
     },
     check: function() {
-        var n = null
-          , t = "";
-        return 2 == game.player.length && 2 == game.dealer.length && (21 == game.pPoint && 21 == game.dPoint && (n = 2,
-        t = "It's a tie with Blackjacks"),
-        null == n && 21 == game.pPoint && (n = 0,
-        t = "Player wins with a Blackjack!"),
-        null == n && 21 == game.dPoint && (n = 1,
-        t = "Dealer wins with a Blackjack!")),
-        null == n && (game.pPoint > 21 && (n = 1,
-        t = "Player has gone bust - Dealer wins!"),
-        game.dPoint > 21 && (n = 0,
-        t = "Dealer has gone bust - Player wins!")),
-        null == n && game.dStand && game.pStand && (game.dPoint > game.pPoint ? (n = 1,
-        t = "Dealer wins with " + game.dPoint + " !") : game.dPoint < game.pPoint ? (n = 0,
-        t = "Player wins with " + game.pPoint + " !") : (n = 2,
-        t = "It's a tie.")),
-        null != n && (game.dealPoint.innerHTML = game.dPoint,
-        document.getElementById("dealOne").classList.add("show"),
-        game.playCon.classList.remove("started"),
-        alert(t)),
-        n
-    },
+        var n = null;
+        if (game.player.length && 2 == game.dealer.length && (21 == game.pPoint && 21 == game.dPoint)) {
+            game.dealPoint.innerHTML = game.dPoint;
+            document.getElementById("dealOne").classList.add("show");
+            document.getElementById("infoMessage").classList.add("show");
+            document.getElementById("playHit").remove();
+
+        return $('<h2><a class="none" href="">Push! Play Again?</a></h2>').hide().appendTo('#infoMessage').delay(250).fadeIn(250);
+    } else {
+        if (21 == game.pPoint) {
+            game.dealPoint.innerHTML = game.dPoint;
+            document.getElementById("dealOne").classList.add("show");
+            document.getElementById("infoMessage").classList.add("show");
+            document.getElementById("playHit").remove();
+    return $('<h2><a class="none" href="">Blackjack! You Win! Deal Again?</a></h2>').hide().appendTo('#infoMessage').delay(250).fadeIn(250);
+    } else {
+        if (game.dPoint == 21) {
+            game.dealPoint.innerHTML = game.dPoint;
+            document.getElementById("dealOne").classList.add("show");
+            document.getElementById("infoMessage").classList.add("show");
+            document.getElementById("playHit").remove();
+    return $('<h2><a class="none" href="">Dealer Blackjack! You Lose! Deal Again?</a></h2>').hide().appendTo('#infoMessage').delay(250).fadeIn(250);
+    } else {
+        if (game.pPoint > 21) {
+            game.dealPoint.innerHTML = game.dPoint;
+            document.getElementById("dealOne").classList.add("show");
+            document.getElementById("infoMessage").classList.add("show");
+            document.getElementById("playHit").remove();
+            return $('<h2><a class="none" href="">Bust! You Lose! Deal Again?</a></h2>').hide().appendTo('#infoMessage').delay(250).fadeIn(250);
+        } else {
+            if (game.dPoint > 21) {
+                game.dealPoint.innerHTML = game.dPoint;
+                document.getElementById("dealOne").classList.add("show");
+                document.getElementById("infoMessage").classList.add("show");
+                document.getElementById("playHit").remove();
+                return $('<h2><a class="none" href="">Dealer Bust! You Win! Deal Again?</a></h2>').hide().appendTo('#infoMessage').delay(250).fadeIn(250);
+            } else {
+                if (game.dStand && game.pStand && (game.dPoint > game.pPoint)) {
+                    game.dealPoint.innerHTML = game.dPoint;
+                    document.getElementById("dealOne").classList.add("show");
+                    document.getElementById("infoMessage").classList.add("show");
+                    document.getElementById("playHit").remove();
+                    return $('<h2><a class="none" href="">Dealer Wins! Deal Again?</a></h2>').hide().appendTo('#infoMessage').delay(250).fadeIn(250);
+                } else {
+                    if (game.dStand && game.pStand && (game.dPoint < game.pPoint)) {
+                        game.dealPoint.innerHTML = game.dPoint;
+                        document.getElementById("dealOne").classList.add("show");
+                        document.getElementById("infoMessage").classList.add("show");
+                        document.getElementById("playHit").remove();
+                        return $('<h2><a class="none" href="">You Win! Deal Again?</a></h2>').hide().appendTo('#infoMessage').delay(250).fadeIn(250);
+                    }
+                }
+            }
+        }}}}},
+    
+
     hit: function() {
         game.draw(),
         game.points(),
         0 != game.turn || 21 != game.pPoint || game.pStand || (game.pStand = !0,
         game.playerStand.classList.add("standing")),
         1 != game.turn || 21 != game.dPoint || game.dStand || (game.dStand = !0,
-        game.dealStand.classList.add("standing")),
+        game.dealStand.classList.add("standing"), document.getElementById("dealOne").classList.add("show")),
         null == game.check() && game.next()
     },
     stand: function() {
         game.turn ? (game.dStand = !0,
         game.dealStand.classList.add("standing")) : (game.pStand = !0,
-        game.playerStand.classList.add("standing")),
+        game.playerStand.classList.add("standing"), document.getElementById("dealOne").classList.add("show")),
         null == (game.pStand && game.dStand ? game.check() : null) && game.next()
     },
     next: function() {
