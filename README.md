@@ -1,2 +1,2 @@
 # BlackJack
- JTM's BlackJack Game
+Altcademy Blacjack Assignment
